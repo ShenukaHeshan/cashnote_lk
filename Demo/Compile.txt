@@ -1,0 +1,2 @@
+--gcc compile
+sudo gcc -o /bin/msprintdemo msprintdemo.c /home/vega-user/Documents/cashnote/Demo/lib/libmsprintsdk.so  -lstdc++  -lpthread -ldl -ludev
