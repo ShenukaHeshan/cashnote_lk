@@ -168,6 +168,20 @@
   font-weight: 600;
 }
 
+.ml-text {
+  position: absolute;
+  top: 280px;
+  right: 100px;
+  width: 100%;
+  text-align: right;
+  font-size: 60px;
+  color: black;
+  font-family: "Trebuchet MS";
+  font-weight: 600;
+  z-index: 2;
+  -webkit-text-stroke: 2px black;
+}
+
 .password-text {
   position: absolute;
   width: 100%;
@@ -529,7 +543,7 @@
 
 .accept-layer {
   position: absolute;
-  top: 76%;
+  top: 78%;
 }
 
 .language-layer {
@@ -2076,4 +2090,37 @@
   color: white;
   font-family: "Trebuchet MS";
   border-radius: 10px;
+}
+
+.advertisement-box {
+  width: 94%;
+  position: absolute;
+  top: 565px;
+  left: 3%;
+  z-index: 9;
+}
+
+
+.filling-bottle{
+  width: 50%;
+  position: absolute;
+  top: 150px;
+  left: 25%;
+  z-index: 9999;
+}
+
+.enter-cash{
+  width: 92%;
+  position: absolute;
+  top: 800px;
+  left: 4%;
+  z-index: 9999;
+}
+
+.black-line{
+  width: 17%;
+  position: absolute;
+  top: 140px;
+  left: 420px;
+  z-index: 9999;
 }
