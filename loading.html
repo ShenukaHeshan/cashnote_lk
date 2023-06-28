@@ -44,15 +44,13 @@
             </div>
 
             <div id="tapToStart-container" class="container1" style="display: none;">
-                <video id="advertisement" class="advertisement-box" autoplay loop muted>
+                <video id="videoTapToStart"  class="img-class "  autoplay loop muted>
                     <source src="Videos/add.mp4" type="video/mp4" />
                     <source src="Videos/add.ogg" type="video/ogg" />
                     Your browser does not support the video tag.
                 </video>
-                <div id="touch-toStart" class="select-text" style="top: 80%; z-index: 2;">
-                    <h1 class="select-text">Tap to Start</h1>
-                </div>
-                <img id="imgBtnTapToStart" src="images/tap-start.png" alt="Snow" class="img-class container1" />
+                <img id="imgLogoTapToStart" src="images/ufil.png" alt="Snow" class="logo-class-tap" />
+                <img id="imgBtnTapToStart" src="images/tap-to-start.png" alt="Snow" class="img-class-tap" />
                 <div id="btnDebug" class="debug-ico" alt="Snow"></div>
             </div>
 
@@ -891,9 +889,7 @@
                                 <div id="no4product1Detail1" class="produt-detail-one">
                                     Product 1
                                 </div>
-                                <div id="no4product1Detail2" class="produt-detail-two">
-                                    Save upto<br />
-                                    Rs. 40
+                                <div id="no4product1Detail2" style="display: none;" class="produt-detail-two">
                                 </div>
                             </div>
                             <div id="btnProduct1No" class="col product-col" style="display: none;">
@@ -945,9 +941,7 @@
                                 <div id="no4product2Detail1" class="produt-detail-one">
                                     Product 2
                                 </div>
-                                <div id="no4product2Detail2" class="produt-detail-two">
-                                    Save upto<br />
-                                    Rs. 50
+                                <div id="no4product2Detail2" style="display: none;" class="produt-detail-two">
                                 </div>
                             </div>
                             <div id="btnProduct2No" class="col product-col" style="display: none;">
@@ -999,9 +993,7 @@
                                 <div id="no4product3Detail1" class="produt-detail-one">
                                     Product 3
                                 </div>
-                                <div id="no4product3Detail2" class="produt-detail-two">
-                                    Save upto<br />
-                                    Rs. 60
+                                <div id="no4product3Detail2" style="display: none;" class="produt-detail-two">
                                 </div>
                             </div>
                             <div id="btnProduct3No" class="col product-col" style="display: none;">
@@ -1054,8 +1046,6 @@
                                     Product 4
                                 </div>
                                 <div id="no4product4Detail2" class="produt-detail-two">
-                                    Save upto<br />
-                                    Rs. 50
                                 </div>
                             </div>
                             <div id="btnProduct4No" class="col product-col" style="display: none;">
@@ -1851,14 +1841,23 @@
                     <div class="grid-item" onclick="numClickVol('7')">7</div>
                     <div class="grid-item" onclick="numClickVol('8')">8</div>
                     <div class="grid-item" onclick="numClickVol('9')">9</div>
-                    <div class="grid-item" onclick="numClickVol('OK')">OK</div>
+                </div>
+
+                <div class="numberPad-0">
                     <div class="grid-item" onclick="numClickVol('0')">0</div>
+                </div>
+
+                <div class="numberPad-delete">
                     <div class="grid-item" onclick="numClickVol('DELETE')">
                         <img src="images/ic-delete.png" alt="Snow" class="streach-img" style="padding-left: 15%; padding-right: 30%; height: 60%;" />
                     </div>
                 </div>
 
-                <div id="showMaxAmt" class="select-text text-center" style="top: 83%; font-size: 40px; display: none;">Payable max amount: <span id="maxPayment">0</span> Rs</div>
+                <div class="numberPad-next">
+                    <div class="grid-item-next" onclick="numClickVol('OK')">OK</div>
+                </div>
+
+                <div id="showMaxAmt" class="select-text text-center" style="top: 30%; font-size: 40px; display: none;">Payable max amount: <span id="maxPayment">0</span> Rs</div>
             </div>
 
             <div id="printNotification-container" class="container1 noselect" style="display: none;">

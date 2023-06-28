@@ -506,6 +506,7 @@ function clearVal() {
 
 // Update V2
 function numClickVol(num) {
+    startTimer(60);
     clearTimeout(r_timer);
     document.getElementById("showMaxAmt").style.display = "block";
     document.getElementById("ml-text").style.display = "block";
@@ -521,6 +522,7 @@ function numClickVol(num) {
                 color: "red",
             });
             $("#idBtlVol").text("Not a valid volume");
+            document.getElementById("showMaxAmt").style.display = "none";
         } else {
             if (btlVol < 100) {
                 document.getElementById("ml-text").style.display = "none";
@@ -531,6 +533,7 @@ function numClickVol(num) {
                     color: "red",
                 });
                 $("#idBtlVol").text("Enter 100ml at least!");
+                document.getElementById("showMaxAmt").style.display = "none";
             } else {
                 socket.emit("unitPrice", productPrices);
                 socket.emit("maxAmt", btlVol * productPrices);
@@ -566,7 +569,17 @@ function numClickVol(num) {
     } else {
         // Add this condition to prevent initial zero
         if (btlVol.length == 0 && num == "0") {
-            document.getElementById("ml-text").style.display = "none";
+            document.getElementById("showMaxAmt").style.display = "none";
+
+            // Check if the element with ID "idBtlVol" exists
+            if ($("#idBtlVol").length) {
+                // The element exists
+                document.getElementById("ml-text").style.display = "block";
+            } else {
+                // The element does not exist
+                document.getElementById("ml-text").style.display = "none";
+            }
+
             return; // exit the function if the first number is zero
         } else {
             $("#idBtlVol").css({
@@ -586,6 +599,7 @@ function numClickVol(num) {
                 color: "red",
             });
             $("#idBtlVol").text("Enter 1500ml bellow!");
+            document.getElementById("showMaxAmt").style.display = "none";
         }
     }
     document.getElementById("maxPayment").innerHTML = (btlVol * productPrices).toFixed(2);
@@ -605,6 +619,8 @@ $(document).ready(function () {
                     selectedVolume = "0";
                     hideAll();
                     $("div#tapToStart-container").show();
+                    // $("div#thankYou-container").show();
+                    
                     // $("div#barcode-data-container").show();
                     // $("div#barcode-data-container").show();
                     // $("div#barcode-data-view-container").show();
@@ -1071,7 +1087,7 @@ $(document).ready(function () {
                 }, 100);
             });
 
-            $("#imgBtnTapToStart, #advertisement, #touch-toStart").on("click", function (evt) {
+            $("#imgBtnTapToStart, #videoTapToStart, #imgLogoTapToStart").on("click", function (evt) {
                 setTimeout(function () {
                     console.log("clicked");
                     startTimer(60);
@@ -1642,6 +1658,7 @@ function goBack(id) {
             isProductSelected = false;
             ipc_state = STATE_PORDUCT_SELECTION;
             $("div#selectProduct-container").show();
+            document.getElementById("showMaxAmt").style.display = "none";
         } else if (id == "btnBackPrintNotification") {
             $("div#selectVolume-container").show();
         } else if (id == "btnBackSettings") {
@@ -2382,7 +2399,11 @@ function setProductDetails() {
         //no4imgProduct1Image1.src = "images/vim.png"
         console.log(productList[0]);
         no4product1Detail1.innerHTML = productList[0].productName;
-        no4product1Detail2.innerHTML = "Save upto <br/> Rs." + getMaximumDiscount(productList[0].productDiscounts.split("/"));
+        no4product1Detail2.innerHTML = getMaximumDiscount(productList[0].productDiscounts.split("/")) + '% OFF';
+
+        if(getMaximumDiscount(productList[0].productDiscounts.split("/")) != 0){
+            document.getElementById("no4product1Detail2").style.display = "block";
+        }
 
         //no8imgProduct1Image1.src = "images/sunlight.png"
         no6product1Detail1.innerHTML = productList[0].productName;
@@ -2422,7 +2443,11 @@ function setProductDetails() {
     if (productList[1] != undefined) {
         //no4imgProduct2Image1.src = "images/vim.png"
         no4product2Detail1.innerHTML = productList[1].productName;
-        no4product2Detail2.innerHTML = "Save upto<br/>Rs." + getMaximumDiscount(productList[1].productDiscounts.split("/"));
+        no4product2Detail2.innerHTML = getMaximumDiscount(productList[1].productDiscounts.split("/"))  + '% OFF';
+
+        if(getMaximumDiscount(productList[1].productDiscounts.split("/")) != 0){
+            document.getElementById("no4product2Detail2").style.display = "block";
+        }
 
         no6product2Detail1.innerHTML = productList[1].productName;
 
@@ -2462,7 +2487,11 @@ function setProductDetails() {
     if (productList[2] != undefined) {
         //no4imgProduct3Image1.src = "images/vim.png"
         no4product3Detail1.innerHTML = productList[2].productName;
-        no4product3Detail2.innerHTML = "Save upto<br/>Rs." + getMaximumDiscount(productList[2].productDiscounts.split("/"));
+        no4product3Detail2.innerHTML = getMaximumDiscount(productList[2].productDiscounts.split("/"))  + '% OFF';
+
+        if(getMaximumDiscount(productList[2].productDiscounts.split("/")) != 0){
+            document.getElementById("no4product3Detail2").style.display = "block";
+        }
 
         no6product3Detail1.innerHTML = productList[2].productName;
 
@@ -2502,7 +2531,11 @@ function setProductDetails() {
     if (productList[3] != undefined) {
         //no4imgProduct4Image1.src = "images/vim.png"
         no4product4Detail1.innerHTML = productList[3].productName;
-        no4product4Detail2.innerHTML = "Save upto Rs." + getMaximumDiscount(productList[3].productDiscounts.split("/"));
+        no4product4Detail2.innerHTML = getMaximumDiscount(productList[3].productDiscounts.split("/"))  + '% OFF';
+
+        if(getMaximumDiscount(productList[2].productDiscounts.split("/")) != 0){
+            document.getElementById("no4product4Detail2").style.display = "block";
+        }
 
         no6product4Detail1.innerHTML = productList[3].productName;
 
