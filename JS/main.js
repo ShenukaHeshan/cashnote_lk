@@ -510,8 +510,8 @@ function numClickVol(num) {
     clearTimeout(r_timer);
     document.getElementById("showMaxAmt").style.display = "block";
     document.getElementById("ml-text").style.display = "block";
-
-    if (num == "OK") {
+    
+    if (num == "OK") {        
 
         console.log(btlVol);
         if (btlVol.length == 0) {
@@ -539,7 +539,8 @@ function numClickVol(num) {
                 socket.emit("maxAmt", btlVol * productPrices);
                 /* Display max amount in sec3 */
                 // document.getElementById("max").innerHTML = btlVol * productPrices;
-                document.getElementById("maxAmmount").innerHTML = btlVol * productPrices;
+                document.getElementById("maxAmmount").innerHTML = (btlVol * productPrices).toFixed(2);
+                localStorage.setItem("maxAmmount", (btlVol * productPrices).toFixed(2));
                 document.getElementById("maxVolume").innerHTML = btlVol;
                 setTimeout(function () {
                     btlVol = "";
@@ -618,6 +619,7 @@ $(document).ready(function () {
                     selected_nozzel_number = "0";
                     selectedVolume = "0";
                     hideAll();
+                    localStorage.setItem("maxAmmount", 0);
                     $("div#tapToStart-container").show();
                     // $("div#thankYou-container").show();
                     
@@ -662,36 +664,6 @@ $(document).ready(function () {
                 // document.getElementById("amount").innerHTML = localStorage.getItem("Amount") || 0;
                 document.getElementById("total").innerHTML = localStorage.getItem("Total") || 0;
                 document.getElementById("refill").innerHTML = localStorage.getItem("Refill") || 0;
-
-                var chosse_prestange = ((localStorage.getItem("Total") || 0) / (btlVol * productPrices)) * 100;
-                var roundedValue = Math.floor(chosse_prestange);
-                var images = [
-                  "images/Comp-0.gif",
-                  "images/Comp-1.gif",
-                  "images/Comp-2.gif",
-                  "images/Comp-3.gif",
-                  "images/Comp-4.gif",
-                  "images/Comp-5.gif",
-                  "images/Comp-6.gif",
-                  "images/Comp-7.gif",
-                  "images/Comp-8.gif",
-                  "images/Comp-9.gif",
-                  "images/Comp-10.gif",
-                  "images/Comp-11.gif",
-                  "images/Comp-12.gif",
-                  "images/Comp-13.gif",
-                  "images/Comp-14.gif",
-                  "images/Comp-15.gif",
-                  "images/Comp-16.gif",
-                  "images/Comp-17.gif",
-                  "images/Comp-18.gif",
-                  "images/Comp-19.gif"
-                ];
-                
-                var index = Math.floor((roundedValue - 1) / 5); // Calculate the index based on the roundedValue
-                index = Math.max(0, Math.min(index, images.length - 1)); // Clamp the index within the valid range
-                
-                document.getElementById("filling-gif").src = images[index];
             });
 
             /* If stacked triggerd clear timout to redirect index window */
@@ -704,6 +676,41 @@ $(document).ready(function () {
 
                 document.getElementById("btnDecline").style.display = "none";
                 document.getElementById("btnConfirm").style.display = "block";
+
+
+                var chosse_prestange = (localStorage.getItem("Total") / localStorage.getItem("maxAmmount")) * 100;
+                var roundedValue = Math.floor(chosse_prestange);
+
+                var images = [
+                "images/Comp-0.gif",
+                "images/Comp-1.gif",
+                "images/Comp-2.gif",
+                "images/Comp-3.gif",
+                "images/Comp-4.gif",
+                "images/Comp-5.gif",
+                "images/Comp-6.gif",
+                "images/Comp-7.gif",
+                "images/Comp-8.gif",
+                "images/Comp-9.gif",
+                "images/Comp-10.gif",
+                "images/Comp-11.gif",
+                "images/Comp-12.gif",
+                "images/Comp-13.gif",
+                "images/Comp-14.gif",
+                "images/Comp-15.gif",
+                "images/Comp-16.gif",
+                "images/Comp-17.gif",
+                "images/Comp-18.gif",
+                "images/Comp-19.gif"
+                ];
+                
+                var index = Math.floor((roundedValue - 1) / 5); // Calculate the index based on the roundedValue
+                indeximg = Math.max(0, Math.min(index, images.length - 1)); // Clamp the index within the valid range
+                 
+                console.log(Math.floor((roundedValue - 1) / 5));
+                console.log(indeximg = Math.max(0, Math.min(index, images.length - 1)));
+
+                document.getElementById("filling-gif").src = images[indeximg];
             });
 
             /* Store stacked amount */

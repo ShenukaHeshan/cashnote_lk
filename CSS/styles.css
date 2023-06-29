@@ -549,8 +549,9 @@
 }
 
 .img-class {
-  height: 101%;
-  position: absolute;
+  height: 115%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .img-class-tap {
@@ -563,7 +564,7 @@
 .logo-class-tap{
   width: 25%;
   left: 70%;
-  top: 92%;
+  top: 90%;
   position: absolute;
 }
 
@@ -2178,17 +2179,17 @@
 }
 
 .enter-cash{
-  width: 84%;
+  width: 60%;
   position: absolute;
-  top: 715px;
-  left: 8%;
+  top: 735px;
+  left: 20%;
   z-index: 9999;
 }
 
 .black-line{
-  width: 17%;
+  width: 14%;
   position: absolute;
-  top: 140px;
-  left: 420px;
+  top: 160px;
+  left: 440px;
   z-index: 9999;
 }
